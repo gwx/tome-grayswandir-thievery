@@ -12,7 +12,11 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-local addon = __loading_addon
-class:bindHook('ToME:load', function(self, data)
-		util.load_dir('/data-'..addon..'/autoloads/')
-		end)
+return {}
+
+--[[
+return {
+	one_per_level = true,
+	{name = 'font-life', minor = true, percent = 80,},}
+
+--]]

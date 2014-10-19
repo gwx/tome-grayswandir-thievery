@@ -12,7 +12,25 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-local addon = __loading_addon
-class:bindHook('ToME:load', function(self, data)
-		util.load_dir('/data-'..addon..'/autoloads/')
+newAI('summon-escort', function(self)
+		local Map = require 'engine.Map'
+
+		local percent = self.life_teleport_percent
+		if percent and self.life < percent * 0.01 * self.max_life then
+			table.set(self, 'ai_state', 'want_teleport_out', true)
+			table.set(self, 'ai_state', 'flee_min_life', true)
+			end
+
+		if table.get(self, 'ai_state', 'want_teleport_out') then
+			self:on_teleport_out()
+			game.level.map:remove(self.x, self.y, Map.ACTOR)
+			game.level:removeEntity(self)
+			game:addEntity(self)
+			self.x = nil
+			self.y = nil
+			self.ai_state.want_teleport_out = nil
+			self.ai_state.flee_min_life = nil
+			end
+
+		return self:runAI 'tactical'
 		end)

@@ -12,7 +12,13 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-local addon = __loading_addon
-class:bindHook('ToME:load', function(self, data)
-		util.load_dir('/data-'..addon..'/autoloads/')
+superload('mod.class.Actor', function(_M)
+		_M.sustainCallbackCheck.callbackOnLevelup = 'talents_on_levelup'
+
+		local levelup = _M.levelup
+		function _M:levelup()
+			levelup(self)
+			self:fireTalentCheck 'callbackOnLevelup'
+			end
+
 		end)

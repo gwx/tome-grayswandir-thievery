@@ -12,7 +12,8 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-local addon = __loading_addon
-class:bindHook('ToME:load', function(self, data)
-		util.load_dir('/data-'..addon..'/autoloads/')
-		end)
+registerScheme {
+	name = 'heavy-brawler',
+	levelup = function(self)
+		self:learnStats {self.STAT_STR, self.STAT_CON, self.STAT_DEX, self.STAT_CUN,}
+		end,}

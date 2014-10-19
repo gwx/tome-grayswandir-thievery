@@ -12,7 +12,16 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-local addon = __loading_addon
-class:bindHook('ToME:load', function(self, data)
-		util.load_dir('/data-'..addon..'/autoloads/')
+superload('mod.class.interface.Combat', function(_M)
+		function _M:unscaleCombatStats(scaled_value)
+			local unscaled = 0
+			local tier = math.floor(scaled_value / 20)
+			while tier >= 0 do
+				local points = scaled_value - tier * 20
+				unscaled = unscaled + points * (tier + 1)
+				scaled_value = scaled_value - points
+				tier = tier - 1
+				end
+			return unscaled
+			end
 		end)

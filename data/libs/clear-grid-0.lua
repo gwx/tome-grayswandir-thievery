@@ -12,7 +12,13 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-local addon = __loading_addon
-class:bindHook('ToME:load', function(self, data)
-		util.load_dir('/data-'..addon..'/autoloads/')
-		end)
+superload('engine.Map', function(_M)
+		function _M:clearGridActor(x, y)
+			local actor = self(x, y, _M.ACTOR)
+			if not actor then return end
+			local x, y = util.findFreeGrid(x, y, 20, true, {[_M.ACTOR] = true,})
+			if x and y then
+				actor:move(x, y, true)
+			else
+				actor:teleportRandom(x, y, 200)
+				end end end)
