@@ -25,7 +25,7 @@ newAI('summon-escort', function(self)
 			self:on_teleport_out()
 			game.level.map:remove(self.x, self.y, Map.ACTOR)
 			game.level:removeEntity(self)
-			game:addEntity(self)
+			--game:addEntity(self)
 			self.x = nil
 			self.y = nil
 			self.ai_state.want_teleport_out = nil

@@ -22,7 +22,7 @@ newTalent {
 	duration = 3,
 	radius = 3,
 	chance = 20,
-	power = function(self, t) return self:scale {low = 25, high = 55, 'mind',} end,
+	power = function(self, t) return self:scale {low = 33, high = 67, 'u.mind',} end,
 	callbackOnActBase = function(self, t)
 		local tg = {type = 'ball', selffire = false, talent = t, range = 0, radius = get(t.radius, self, t),}
 		local chance = get(t.chance, self, t)
@@ -59,7 +59,7 @@ for i = 1, 2 do
 		use_percent = 90,
 		on_pre_use = function(self, t, silent)
 			local escort = get(t.actor, self, t)
-			if escort.is_out then
+			if escort.x then
 				if not silent then
 					game.logPlayer(self, '%s is still in the level!', escort.name:capitalize())
 					end
@@ -127,7 +127,7 @@ for i = 1, 2 do
 					T_SHADOW_AMBUSH = {base = 1, every = 6, max = 6,},
 					T_SHADOW_COMBAT = {base = 1, every = 6, max = 6,},
 					T_SHADOW_VEIL = {last = 20, base = 0, every = 6, max = 6,},
-					T_INVISIBILITY = {last = 30, base = 0, every = 6, max = 6,},},
+					T_BLUR_SIGHT = {last = 10, base = 0, every = 6, max = 6,},},
 
 				on_die = function(actor, src, death_note)
 					actor.summoner:unlearnTalentFull(actor.source_talent)
@@ -135,7 +135,6 @@ for i = 1, 2 do
 
 				on_teleport_out = function(actor)
 					game.level.map:particleEmitter(actor.x, actor.y, 1, 'summon')
-					actor.is_out = false
 					actor.ai_state.want_teleport_out = nil
 					if table.get(actor, 'ai_state', 'flee_min_life') then
 						actor.ai_state.flee_min_life = nil
@@ -164,11 +163,12 @@ for i = 1, 2 do
 		on_learn = function(self, t)
 			local escort = get(t.actor, self, t)
 			t.name = 'Escort: '..escort.name
-			game.zone:addEntity(game.level, escort, 'actor')
 			game.party:addMember(escort, {
 					control ='no', type = 'summon', title = 'Escort',
 					leave_level = function(escort, d)
 						game.level:removeEntity(escort, true)
+						escort.x = nil
+						escort.y = nil
 						end,
 					orders = {target = true, leash = true, anchor = true, talents = true,},})
 			end,
@@ -196,18 +196,17 @@ for i = 1, 2 do
 			local escort = get(t.actor, self, t)
 			if not escort then t.on_learn(self, t) escort = get(t.actor, self, t) end
 			escort:forceLevelup(self.level)
+			escort.fov.actors_dist = {} -- fix stealth issue.
 			if actor then
 				local t = escort:getTalentFromId 'T_SHADOWSTEP'
 				local tx, ty = util.findFreeGrid(x, y, get(t.range, self, t), true, {[Map.ACTOR] = true,})
 				if not tx or not ty or not escort:canMove(tx, ty) then return end
-				escort:move(tx, ty, true)
+				game.zone:addEntity(game.level, escort, 'actor', tx, ty)
 				escort:setTarget(actor)
 				escort:forceUseTalent('T_SHADOWSTEP', {ignore_energy = true, ignore_cd = true, force_target = actor,})
-				escort.is_out = true
 				return true
 			elseif escort:canMove(x, y) then
-				escort:move(x, y, true)
-				escort.is_out = true
+				game.zone:addEntity(game.level, escort, 'actor', x, y)
 				return true
 				end
 			end,

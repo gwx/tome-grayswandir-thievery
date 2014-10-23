@@ -71,6 +71,7 @@ newEntity {
 	max_life = resolvers.rngavg(140, 180),
 	combat_armor = 6, combat_def = 2,
 	resolvers.talents {
+		T_WEAPON_COMBAT = {base = 1, every = 7, max = 5,},
 		T_RUSH = {base = 1, every = 7, max = 5,},
 		T_UNARMED_MASTERY = {base = 1, every = 6, max = 6,},
 		T_UNFLINCHING_RESOLVE = {base = 2, every = 5, max = 5,},},}
@@ -84,7 +85,9 @@ newEntity {
 	max_life = resolvers.rngavg(110, 150),
 	combat_armor = 12, combat_def = 5,
 	resolvers.talents {
+		T_WEAPON_COMBAT = {base = 1, every = 7, max = 5,},
 		['T_RIOT-BORN'] = {base = 1, every = 7, max = 5,},
+		T_DIRTY_FIGHTING = {base = 1, every = 7, max = 5,},
 		T_TOTAL_THUGGERY = {base = 1, every = 7, max = 5,},
 		T_UNARMED_MASTERY = {base = 2, every = 6, max = 6,},},}
 
@@ -97,6 +100,7 @@ newEntity {
 	max_life = resolvers.rngavg(140, 180),
 	combat_armor = 6, combat_def = 5,
 	resolvers.talents {
+		T_WEAPON_COMBAT = {base = 2, every = 7, max = 6,},
 		T_ARMOUR_TRAINING = 1,
 		T_DOUBLE_STRIKE = {base = 1, every = 7, max = 5,},
 		T_UPPERCUT = {base = 1, every = 7, max = 5,},
@@ -117,6 +121,7 @@ newEntity {
 	movement_speed = 0.9,
 	ai_state = {ai_move = 'move_complex', talent_in = 1,},
 	resolvers.talents {
+		T_WEAPON_COMBAT = {base = 3, every = 7, max = 7,},
 		T_DOUBLE_STRIKE = {base = 2, every = 5, max = 7,},
 		T_SPINNING_BACKHAND = {base = 1, every = 7, max = 6,},
 		T_AXE_KICK = {base = 1, every = 9, max = 5,},
@@ -154,8 +159,10 @@ newEntity{
 	resolvers.drops {chance = 100, nb = 3, {tome_drops = 'boss',},},
 
 	resolvers.talents {
+		T_SUMMON = 1,
 		T_VITALITY = 2,
-		T_ARMOUR_TRAINING= 1,
+		T_ARMOUR_TRAINING = 1,
+		T_WEAPON_COMBAT = {base = 3, every = 7, max = 9,},
 		T_UNFLINCHING_RESOLVE = {base = 3, every = 9, max = 6,},
 		T_DOUBLE_STRIKE = {base = 4, every = 7, max = 8,},
 		T_SPINNING_BACKHAND = {base = 2, every = 7, max = 6,},
@@ -195,7 +202,7 @@ newEntity{
 		local data = {
 			escort1 = player:callTalent('T_GRAYSWANDIR_SHADOWBLADE_ESCORT_1', 'actor'),
 			escort2 = player:callTalent('T_GRAYSWANDIR_SHADOWBLADE_ESCORT_2', 'actor'),}
-		Chat.new('assassins-fortress-finish', data.escort1 or data.escort2 or game.player, game.player. data):invoke()
+		Chat.new('assassins-fortress-finish', data.escort1 or data.escort2 or player, player, data):invoke()
 
 		end,
 }
