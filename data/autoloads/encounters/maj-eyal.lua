@@ -11,21 +11,19 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 newEntity {
 	name = 'Assassin Lord\'s Messenger',
 	type = 'harmless', subtype = 'special', unique = true,
 	level_range = {15, 25,},
-	rarity = 9,
+	rarity = 1,
 	min_level = 12,
 	on_world_encounter = 'merchant-quest',
 	on_encounter = function(self, who)
 		local Quest = require 'engine.Quest'
-		-- If we haven't finished the lost merchant quest, don't spawn.
+		-- Fail to generate if we haven't encountered the lost merchant, but retry later.
 		if not who:isQuestStatus('lost-merchant', Quest.DONE) then return end
-		-- If we have finished the lost merchant quest but didn't ally
-		-- with the lord, spawn but do nothing.
-		if not who:isQuestStatus('lost-merchant', Quest.DONE, 'evil') then return true end
+		-- If we finished lost merchant but didn't side with the assassin lord, complete but do nothing.
+		if not who:isQuestStatus('lost-merchant', Quest.COMPLETED, 'evil') then return true end
 
 		who.energy.value = game.energy_to_act
 		game.paused = true
@@ -37,4 +35,4 @@ newEntity {
 
 He hands you a small map of the area and then vanishes.]])
 		game.player:grantQuest 'grayswandir-thievery+assassins-fortress'
-		end,}
+		return true end,}
