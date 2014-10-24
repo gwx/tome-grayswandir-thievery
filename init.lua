@@ -12,15 +12,17 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-long_name = 'Thievery'
+long_name = 'Thievery (Part 1)'
 short_name = 'grayswandir-thievery'
 for_module = 'tome'
-version = {1,2,3}
+version = {1, 2, 4,}
 weight = 150
 author = {'grayswandir',}
 homepage = ''
-description = [[Another contest entry.]]
-tags = {'contest2014',}
+description = [[Currently just an extra zone. More planned soon.
+
+If you side with the Assassin Lord, a new zone will open up. This will be triggered the same way the Assassin Lord quest is, starting at player level 15.]]
+tags = {'contest2014', 'assassin', 'thief', 'rogue', 'gauntlet', 'troll', 'forest', 'zone', 'artifact', 'lord', 'quest'}
 
 overload = true
 superload = true
