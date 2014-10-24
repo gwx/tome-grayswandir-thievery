@@ -179,6 +179,7 @@ newEntity{
 	ai = 'tactical', ai_state = {talent_in = 1, ai_move = 'move_astar',},
 	ai_tactic = resolvers.tactic 'melee',
 
+	talent_cd_reduction = {T_SUMMON = -6,},
 	summon = {
 		{name = 'troll brute', number = 2, hasxp = false,},
 		{name = 'troll thug', number = 2, hasxp = false,},
@@ -188,8 +189,6 @@ newEntity{
 		local Quest = require 'engine.Quest'
 		game.player:resolveSource():setQuestStatus('grayswandir-thievery+assassins-fortress', Quest.DONE)
 	end,
-
-	make_escort = {{name = 'troll striker', number = 2,},},
 
 	on_die = function(self, who)
 		local player = game:getPlayer(true)
