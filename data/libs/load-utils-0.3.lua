@@ -63,7 +63,11 @@ util.load_actions = {
 	ego = entity_list '/data/general/objects/egos/',
 	npc = entity_list '/data/general/npcs/',
 	encounter = entity_list '/data/general/encounters/',
-	store = function(filename) mod.class.Store:loadStores(filename) end,}
+	store = function(filename)
+		-- Won't work until 1.3. So we'll call that code directly.
+		-- mod.class.Store:loadStores(filename)
+		mod.class.Store:loadList(filename, nil, mod.class.Store.stores_def)
+		end,}
 
 util.file_actions = {
 	['birth.lua'] = 'birth',
