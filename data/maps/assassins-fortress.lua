@@ -20,6 +20,10 @@ defineTile('&', 'HARDWALL')
 defineTile('+', 'DOOR')
 defineTile('<', 'GRASS_UP_WILDERNESS')
 defineTile('L', 'FLOOR', nil, 'GRAYSWANDIR_TROLL_LORD')
+defineTile('X', 'FLOOR', nil, nil, nil, nil, {
+		type = 'special', subtype = 'actor', actor = 'ASSASSIN_LORD',})
+defineTile('@', 'FLOOR', nil, nil, nil, nil, {
+		type = 'special', subtype = 'actor', actor = 'MERCHANT'})
 
 local room = function(self, xmin, xmax, ymin, ymax)
 	local grass_chance = rng.percent(40) and rng.range(0, 25) or 0
@@ -126,12 +130,12 @@ return {
 	[[##......#%                                      %::::::::::&]],
 	[[#.......#%                                      %::::::::::&]],
 	[[#..#....#%                                      %::::::::::&]],
-	[[#........%                                      %::::::::::&]],
+	[[#........%                                      %:::X::::::&]],
 	[[<........+                                      %::::::::::&]],
 	[[#........+                                      %::::::::L:&]],
 	[[##...#..#%                                      %::::::::::&]],
 	[[##.......%                                      %::::::::::&]],
-	[[#.......#%                                      %::::::::::&]],
+	[[#.......#%                                      %:@::::::::&]],
 	[[##......#%                                      %::::::::::&]],
 	[[#.##...##%                                      %%%%%++%%%%&]],
 	[[#..#.#...%                                                 &]],

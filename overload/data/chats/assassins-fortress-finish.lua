@@ -15,21 +15,25 @@ if escort1 and escort2 then
 
 	newChat {
 		id = 'start',
-		text = [["Now that that brute's down, we can mop up the rest. Your work here is done."]],
+		text = [[Now that that brute's down, we can mop up the rest. Your work here is done.
+
+Be sure to visit again soon. We might have more work for you yet.]],
 		answers = {{'...',},},}
 
 elseif escort1 and not escort2 then
 
 	newChat {
 		id = 'start',
-		text = [["Now that that brute's down, I'll be enough for the rest. Your work here is done."]],
+		text = [[Now that that brute's down, I'll be enough for the rest. Your work here is done.
+
+Be sure to visit again soon. We might have more work for you yet.]],
 		answers = {{'...',},},}
 
 elseif not escort1 and escort2 then
 
 	newChat {
 		id = 'start',
-		text = [["You've fulfilled your duty. The rest are mine."]],
+		text = [[You've fulfilled your duty. The rest are mine. Make sure you come back once we've set up here.]],
 		answers = {{'...',},},}
 
 else
@@ -38,7 +42,7 @@ else
 		id = 'start',
 		text = [[The main foe slain, it's only a matter of time before the rest of the creatures disperse. You've done your duty.
 
-With no one to report your results to, you decide to simply leave.]],
+With no one to report your results to, you decide to simply leave. You should probably return in a short while, once they've moved in.]],
 		answers = {{'...',},},}
 
 	end

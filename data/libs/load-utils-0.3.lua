@@ -37,6 +37,7 @@ util.dir_actions = {
 	achievements = function(filename) require('engine.interface.WorldAchievements'):loadDefinition(filename) end,
 	objects = 'object',
 	encounters = 'encounter',
+	stores = 'store',
 	egos = 'ego',
 	npcs = 'npc',}
 
@@ -61,7 +62,8 @@ util.load_actions = {
 	object = entity_list '/data/general/objects/',
 	ego = entity_list '/data/general/objects/egos/',
 	npc = entity_list '/data/general/npcs/',
-	encounter = entity_list '/data/general/encounters/',}
+	encounter = entity_list '/data/general/encounters/',
+	store = function(filename) mod.class.Store:loadStores(filename) end,}
 
 util.file_actions = {
 	['birth.lua'] = 'birth',
@@ -71,7 +73,8 @@ util.file_actions = {
 	['damage-types.lua'] = 'damage_type',
 	['damage_types.lua'] = 'damage_type',
 	['autolevels.lua'] = 'autolevel',
-	['autolevel_schemes.lua'] = 'autolevel',}
+	['autolevel_schemes.lua'] = 'autolevel',
+	['stores.lua'] = 'store',}
 
 --- Recursively load a directory according to file names.
 function util.load_dir(dir, mode)

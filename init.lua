@@ -11,18 +11,17 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
-long_name = 'Thievery (Part 1)'
+long_name = 'Thievery'
 short_name = 'grayswandir-thievery'
 for_module = 'tome'
 version = {1, 2, 4,}
 weight = 150
 author = {'grayswandir',}
 homepage = ''
-description = [[Currently just an extra zone. More planned soon.
+description = [[If you side with the Assassin Lord, a new zone will open up. This will be triggered the same way the Assassin Lord quest is, starting at player level 15.
 
-If you side with the Assassin Lord, a new zone will open up. This will be triggered the same way the Assassin Lord quest is, starting at player level 15.]]
-tags = {'contest2014', 'assassin', 'thief', 'rogue', 'gauntlet', 'troll', 'forest', 'zone', 'artifact', 'lord', 'quest'}
+Once you've cleared this area, you can come back for access to the merchant services you would've gotten if you had saved the merchant - at a substantial markup over normal cost.]]
+tags = {'contest2014', 'assassin', 'thief', 'rogue', 'gauntlet', 'troll', 'forest', 'zone', 'artifact', 'lord', 'quest', 'merchant', 'slave', 'intimidate',}
 
 overload = true
 superload = true

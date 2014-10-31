@@ -1,0 +1,32 @@
+stack traceback:
+	[C]: in function 'error'
+	/engine/interface/ActorTalents.lua:153: in function </engine/interface/ActorTalents.lua:135>
+Lua Error: /engine/interface/ActorTalents.lua:175: /engine/interface/ActorTalents.lua:153: /engine/Chat.lua:77: attempt to index field 'player' (a nil value)
+stack traceback:
+	/engine/Chat.lua:77: in function 'invoke'
+	...a-grayswandir-thievery/zones/assassins-fortress/npcs.lua:198: in function 'check'
+	/engine/interface/ActorLife.lua:83: in function 'die'
+	/mod/class/Actor.lua:2936: in function 'die'
+	/mod/addons/ashes-urhrok/superload/mod/class/Actor.lua:24: in function 'die'
+	/mod/class/interface/ActorLife.lua:31: in function 'takeHit'
+	/mod/class/Actor.lua:2825: in function 'takeHit'
+	/data/damage_types.lua:432: in function 'physical'
+	/data-grayswandir-weird-wyrmic/autoloads/damage-types.lua:40: in function 'projector'
+	/mod/class/interface/Combat.lua:532: in function 'attackTargetWith'
+	...wandir-weaponry/superload/mod/class/interface/Combat.lua:312: in function 'attackTargetWith'
+	/mod/class/interface/Combat.lua:172: in function 'attackTarget'
+	...wandir-weaponry/superload/mod/class/interface/Combat.lua:203: in function 'attackTarget'
+	/data/talents/misc/misc.lua:72: in function </data/talents/misc/misc.lua:52>
+	[C]: in function 'xpcall'
+	/engine/interface/ActorTalents.lua:148: in function </engine/interface/ActorTalents.lua:135>
+	At [C]:-1
+	At [C]:-1 error
+	At /engine/interface/ActorTalents.lua:175 bumpInto
+	At /mod/class/Actor.lua:3482 attack
+	At /engine/interface/ActorLife.lua:41 check
+	At [string "return function(self, x, y, what, ...) local ..."]:1 checkAllEntities
+	At /engine/Actor.lua:193 move
+	At /mod/class/Actor.lua:1368 move
+	At /mod/class/Player.lua:296 moveDir
+	At /mod/class/Game.lua:1657
+	At /engine/KeyBind.lua:229

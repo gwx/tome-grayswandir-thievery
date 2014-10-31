@@ -203,5 +203,4 @@ newEntity{
 			escort2 = player:callTalent('T_GRAYSWANDIR_SHADOWBLADE_ESCORT_2', 'actor'),}
 		Chat.new('assassins-fortress-finish', data.escort1 or data.escort2 or player, player, data):invoke()
 
-		end,
-}
+		end,}
